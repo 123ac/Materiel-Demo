@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jykj.materiel.system.dao.SysUserMapper">
+
+    <select id="UserPages" resultType="com.jykj.materiel.system.entity.SysUser">
+        SELECT
+        u.id Id,u.name name,u.`password` password,s.roleName roleName
+        FROM
+        sys_user AS u
+        LEFT JOIN sys_user_role AS r ON u.id = r.user_id
+        LEFT JOIN sys_role as s on s.Id=r.role_id
+        ${ew.customSqlSegment}
+        GROUP BY Id
+    </select>
+</mapper>

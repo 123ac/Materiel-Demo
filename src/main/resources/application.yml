@@ -1,0 +1,25 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/materiel?serverTimezone=Asia/Shanghai&allowMultiQueries=true&characterEncoding=utf-8
+    password: root
+    username: root
+  devtools:
+    restart:
+      additional-paths: src/main/java
+      enabled: true
+  thymeleaf:
+    cache: true
+  #切面启用
+  aop:
+    proxy-target-class: true
+    auto: true
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  mapper-locations: classpath:/mapper/*.xml

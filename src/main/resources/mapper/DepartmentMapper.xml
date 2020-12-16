@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jykj.materiel.system.dao.DepartmentMapper">
+
+    <select id="findDeptAndCount" resultType="com.jykj.materiel.system.entity.Department">
+        SELECT
+	d.dpId,
+	d.departmentName,
+	d.remarks,
+	IFNULL(
+		(
+			SELECT
+				count(*)
+			FROM
+				sys_userinfo s
+			WHERE
+				s.departmentId = d.dpId
+			GROUP BY
+				s.departmentId
+		),
+		0
+	) AS deptcount
+FROM
+	department d
+GROUP BY
+	dpid
+    </select>
+</mapper>

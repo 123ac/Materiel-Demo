@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jykj.materiel.system.dao.SysUserinfoMapper">
+
+    <select id="UserInfoPages" resultType="com.jykj.materiel.system.entity.SysUserinfo">
+SELECT
+	u.*, d.*
+FROM
+	sys_userinfo AS u
+LEFT JOIN department AS d ON u.departmentId = d.dpId
+ ${ew.customSqlSegment}
+GROUP BY u.UserId
+
+    </select>
+</mapper>
